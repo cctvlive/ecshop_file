@@ -1,0 +1,56 @@
+后台的配送方式管理中，有500克以内多少费用，续重多少费用这样的输入框
+
+ 
+如何修改前面这部分内容呢？
+其实很简单，先找到具体配送方式的php，比如邮政快递包裹是post_express.php
+ 
+ {
+               if ($goods_weight > 5)
+                {
+                    $fee += 8 * $this->configure['step_fee'];
+                    $fee += (ceil(($goods_weight - 5) / 0.5)) * $this->configure['step_fee1'];
+                }
+                else
+                {
+                    if ($goods_weight > 1)
+                    {
+                        $fee += (ceil(($goods_weight - 1) / 0.5)) * $this->configure['step_fee'];
+                    }
+                }
+            }
+ 
+注意，这里的1，代表1000k，
+也就是1000k以内的费用多少
+如果要改成500k以内的费用多少，把1改成0.5就行
+代码变成：
+  else
+                {
+                    if ($goods_weight > 0.5)
+                    {
+                        $fee += (ceil(($goods_weight - 0.5) / 0.5)) * $this->configure['step_fee'];
+                    }
+                }
+ 
+如果要改成3000k以内的费用多少 
+只要把 1 改成 3 即可
+代码变成
+  else
+                {
+                    if ($goods_weight > 3)
+                    {
+                        $fee += (ceil(($goods_weight - 3) / 0.5)) * $this->configure['step_fee'];
+                    }
+                }
+ 
+ 
+以上是计算运费的规则，那么如何修改前面的文字内容呢？
+还是以邮政快递包裹为例
+打开languages/zh_cn/shipping/post_express.php
+$_LANG['post_express']          = '邮政快递包裹';
+$_LANG['post_express_desc']     = '邮政快递包裹的描述内容。';
+$_LANG['item_fee']              = '单件商品费用：';
+$_LANG['base_fee']              = '1000克以内费用：';
+$_LANG['step_fee']             = '5000克以内续重每500克费用：';
+$_LANG['step_fee1']             = '5001克以上续重500克费用：';
+修改这里的语言包即可
+如要修改其他配送方式，参考 ecshop配送方式对应表
