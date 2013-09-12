@@ -1,0 +1,8 @@
+2.7 “商品分类”后台创建新分类时，商品分类名称被限制了20字节，对于英文模板来说，太短了，修改方法如下：
+ 
+ 
+ECShop\admin\templates\category_info.htm 
+ 
+<input type='text' name='cat_name' maxlength="20" value='{$cat_info.cat_name|escape:html}' size='27' /> 
+ 
+把上面的：maxlength="20" 改为长点就可以了
