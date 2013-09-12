@@ -1,0 +1,8 @@
+但是有些客户感觉放大镜比较小，想修改的大一些，那具体如何改呢？
+步骤：
+打开themes/ecmoban/js/mzp-packed-me.js 在第290行左右
+  }re=new RegExp(/zoom\-width(\s+)?:(\s+)?(\w+)/i);var zoomWidth=-1;matches=re.exec(aels[i].rel);bigCont.style.width='300px';if(matches){
+                bigCont.style.width=matches[3];zoomWidth=matches[3]
+ }re=new RegExp(/zoom\-height(\s+)?:(\s+)?(\w+)/i);var zoomHeight=-1;matches=re.exec(aels[i].rel);bigCont.style.height='300px';if(matches){
+ 
+这里两个300 改成其他数字即可。
