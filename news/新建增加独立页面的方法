@@ -1,0 +1,13 @@
+是通过php文件来指向dwt文件的，比如index.php是程序文件，那么其模板文件就是index.dwt
+那么如果新建一个 php文件来单独做其他作用呢？其实很简单
+第一步：
+将index.php复制一份 new.php出来，这里new.php代表一个新页面，以后我们可以通过 域名/new.php 来访问
+ 
+第二步：
+打开new.php 将里面所有index.dwt文件替换成new.dwt
+ 
+第三步：
+进到模板目录比如默认模板是 themes/default 将index.dwt复制为new.dwt即可
+记住以后要修改文件的话只要修改new.dwt就行了
+ 
+完成以上三步就完成了 新页面的制作，你可以试试 域名/new.php是不是可以访问，
