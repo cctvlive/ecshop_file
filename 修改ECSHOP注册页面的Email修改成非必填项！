@@ -1,0 +1,68 @@
+“将会员注册页面的email修改成非必填项”，注意是 email , 那个"会员注册项设置"里是不包括EMAIL的
+闲话少叙，下面就来说一下方法，
+注意此方法是在2.7.2版上修改的，针对以前版本的修改，我曾在官方论坛发布过，大家可以去搜索查阅。
+
+1）、
+
+首先来修改模板文件， 这里以官方默认模板为例
+打开 /themes/default/user_passport.dwt 文件
+找到
+onblur="checkEmail(this.value);"
+将其删除，继续向下找到
+*
+也将其删除
+ 
+2）、
+打开  /js/user.js 文件，找到下面JS代码段并删除之（大概在466行左右）
+
+if (email.length == 0)
+  {
+    msg += email_empty + '\n';
+  }
+  else
+  {
+    if ( ! (Utils.isEmail(email)))
+    {
+      msg += email_invalid + '\n';
+    }
+  }
+  
+  
+  
+  3）、
+
+ 
+  打开 /includes/lib_passport.php 文件，
+
+ 
+  找到下面代码，同样是删除（大概在40行左右） ，注意是删除
+ 
+   /* 检查email */
+    if (empty($email))
+    {
+        $GLOBALS['err']->add($GLOBALS['_LANG']['email_empty']);
+    }
+    else
+    {
+        if (!is_email($email))
+        {
+            $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['email_invalid'], htmlspecialchars($email)));
+        }
+    }
+    
+    
+    4）、
+    
+    继续打开 includes/modules/integrates/integrate.php 文件
+找到下面代码删除之（大概在196行左右）
+
+
+/* 检查email是否重复 */
+        $sql = "SELECT " . $this->field_id .
+               " FROM " . $this->table($this->user_table).
+               " WHERE " . $this->field_email . " = '$email'";
+        if ($this->db->getOne($sql, true) > 0)
+        {
+            $this->error = ERR_EMAIL_EXISTS;
+            return false;
+        }
