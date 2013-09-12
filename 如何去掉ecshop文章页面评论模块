@@ -1,0 +1,11 @@
+评论模块是商品详细页，与文章页面都有的功能。
+但是有些用户觉得文章不需要评论，那么如何修改呢？
+首页打开article.dwt
+找到以下代码
+ 
+ <!-- #BeginLibraryItem "/library/comments.lbi" -->
+{insert_scripts files='transport.js,utils.js'}
+<div id="ECS_COMMENT"> {* ECSHOP 提醒您：动态载入comments_list.lbi，显示评论列表和评论表单 *}{insert name='comments' type=$type id=$id}</div>
+<!-- #EndLibraryItem -->
+ 
+这段代码的意思是在文章页面调用了评论功能模块删除即可。
