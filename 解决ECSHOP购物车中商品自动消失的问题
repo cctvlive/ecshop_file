@@ -1,0 +1,13 @@
+有一些客户反映ecshop的购物车明明有东西，当买第二个产品的时候确发现之前的产品没有了，这是什么原因？
+翻阅了一下资料，整理了以下教程解决该问题：
+网站的SESSION采用IP生成用户唯一码，这样的话，多线接入的用户在路由自动切换时就会造成IP变化，这样，SESSION也就丢失了，与SESSION相关的登陆、购物车也就失效。
+解决办法是当用户第一次登陆时，将用户的IP存入Cookie，或者在生成SESSION时，不取IP，而是在用户的机器存一个加密的Cookie。
+第一种解决办法只需要修改ECSHOP根目录下includes\cls_session.php 大概在82行，找到这个。
+$this->_ip = real_ip();
+修改为
+if(isset($_COOKIE['real_ipd']) && !emptyempty($_COOKIE['real_ipd'])){    
+    $this->_ip = $_COOKIE['real_ipd'];    
+ }else{    
+    $this->_ip = real_ip();    
+    setcookie("real_ipd", $this->_ip, time()+36000, "/");    
+} 
