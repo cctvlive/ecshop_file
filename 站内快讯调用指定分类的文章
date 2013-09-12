@@ -1,0 +1,6 @@
+  使用编辑器打开 index.php文件（如果你的是UTF-8编码，尽量不要使用记事本），找到 index_get_new_articles() 函数部分，将
+  
+  'WHERE a.is_open = 1 AND a.cat_id = ca.cat_id AND ac.cat_type = 1' .
+  
+  修改为:
+   'WHERE a.is_open = 1 AND a.cat_id =5 AND a.cat_id = ac.cat_id AND ac.cat_type = 1' .
