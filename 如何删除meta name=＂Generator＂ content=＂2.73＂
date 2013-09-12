@@ -1,0 +1,14 @@
+网站的头部有这样一段内容
+ 
+<meta name="Generator" content="2.7.3" /> 
+ 
+这是一个版本展示信息的代码，有些朋友希望去除这一段内容，该怎么做呢？
+ 
+ 
+首先，打开文件includes/cls_template.php，找到下面这样的代码，大概在1087行左右。 
+ 
+$source = preg_replace(‘/<head>/i’, “<head> <meta name=\”Generator\” content=\”" . APPNAME .’ ‘ . VERSION . “\” />”,  $source); 
+ 
+直接删除即可。
+ 
+之后记得清缓存看看。
