@@ -1,0 +1,16 @@
+其实很简单，找到goods.dwt直接在{$goods.goods_desc}下边增加一段代码就OK了
+ 
+ 
+<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd">
+        <!-- {foreach from=$properties item=property_group key=key} -->
+        <tr>
+          <th colspan="2" bgcolor="#FFFFFF">{$key|escape}</th>
+        </tr>
+        <!-- {foreach from=$property_group item=property} -->
+        <tr>
+          <td bgcolor="#FFFFFF" align="left" width="30%" class="f1">[{$property.name|escape:html}]</td>
+          <td bgcolor="#FFFFFF" align="left" width="70%">{$property.value}</td>
+        </tr>
+        <!-- {/foreach}-->
+        <!-- {/foreach}-->
+      </table>
