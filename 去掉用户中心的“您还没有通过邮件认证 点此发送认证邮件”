@@ -1,0 +1,8 @@
+注：下面修改方法是以官方默认模板为例的，如果您使用的是其他模板，请搜索 {$lang.not_validated}或{$lang.resend_hash_mail}也能找到对应的代码。
+打开ECSHOP模板文件 user_clips.dwt ，
+找到下面代码：
+
+<!--{if $info.is_validate eq 0} --> 
+          {$lang.not_validated} <a href="javascript:sendHashMail()" style="color:#006bd0;">{$lang.resend_hash_mail}</a><br /> 
+           <!--{/if} --> 
+将它删除掉或者注释掉就行了。
