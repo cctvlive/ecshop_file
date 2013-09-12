@@ -1,0 +1,12 @@
+大家都知道e有一个专题页，就是topic.dwt这个模板文件，这个文件主要是用来定期设置专题活动的，比如七夕，元旦。
+可以看看：http://www.ecmoban.com/topic-4.html
+ 
+但是专题页默认是有一些小问题的，也就是没有底部帮助中心，和商品分类的变量。接下来我们看看如何给他修改一下，让他可以显示底部帮助中心和商品分类呢？
+其实很简单 打开 topic.php（在根目录里）
+找到
+ $smarty->assign('page_title',       $position['title']);       // 页面标题
+在下面添加
+ $smarty->assign('categories',      get_categories_tree()); // 分类树
+$smarty->assign('helps',           get_shop_help());       // 网店帮助
+即可，之后记得清缓存。
+注意：请用dreamwaver修改，如果用记事本修改可能会发生未知错误。
