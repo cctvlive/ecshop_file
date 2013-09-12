@@ -1,0 +1,212 @@
+电子商务的发展带来网店系统的不断增多，性能方面却是参差不齐，ec一直还是引领着这个
+1:如何修改网站"欢迎光临本店"
+回答:languages\zh_cn\common.php文件中， $_LANG['welcome'] = '欢迎光临本店';将他修改成你需要的字样。
+2:如何修改首页"热门搜索关键字"
+回答:后台->系统设置->网店设置->显示设置->首页搜索关键字，添加关键字，然后保存
+3:如何修改首页标题 "Powered by ECShop"
+回答：includes/lib_main.php,找到$page_title = $GLOBALS['_CFG']['shop_title'] . ' - ' . 'Powered by ECShop';修改成$page_title = $GLOBALS['_CFG']['shop_title']就可以了。
+4:如何去除cshop底部查询信息的显示
+回答：library/page_footer.lbi中，删除 {insert name='query_info'}
+5:如何发布首页公告
+回答:后台->系统设置->商店设置->网店信息->商店公告.填写你需要的公告就可以了．
+6:如何发布站内新闻
+增加站内信息,站内新闻
+后台->文章分类->增加文章分类->增加一个文章顶级分类news
+后台->文章类表->增加文章->选择分类news->发布文章
+7:如何修改网站logo
+回答:用你的logo图片替换/themes/default/images/logo.gif中图片就可以了
+8:如何修改产品图片的大小
+回答:在ecshop/themes/default/style.css中，找到.goodsItem .goodsimg{width:100px; height:100px; border:4px solid #eef8ff; margin-bottom:4px;}就可以控制产品图片的大小．
+9:如何管理首页flash播放器
+回答:后台 -> flash播放器管理 -> 增加自定义，你就可以上传和控制图片的位置 
+10:如何修改首页＂精品推荐＂栏目的more小图片
+回答:模板文件中library/recommend_best.lbi中，<div class="more"><a href="../search.php?intro=best"><img src="images/more.gif" /></a></div>
+中more.gif图片换成你要的图片，或者将图片换成你需要的文字．
+11:如何修改首页"新品上市"栏目的more小图片
+回答：模板文件library/recommend_new.lbi中，<div class="more"><a href="../search.php?intro=new"><img src="images/more.gif" /></a></div>
+more.gif修改成你需要的图片或者是换成你需要的文字．
+12:如何手动修改支付方式排列顺序
+回答：数据库表中，找到payment表，pay_order字段就是用来控制顺序的，你如果想让A支付方式排在第一，那么你需要修改该字段的值稍微大一些。
+13:如何去除ec产品详细页产品电击率
+回答：模板文件中，打开goods.dwt，删除<strong>{$lang.goods_click_count}：</strong>{$goods.click_count}
+14:首页模板在哪个文件，头部模板，底部模板个什么文件名称
+回答：首页模板在为index.dwt, 头部模板在library/page_header.lbi,底部文件在library/page_footer.lbi
+15:网站关闭了注册，如何修改“该网店暂停注册”字样
+回答：languages\zh_cn\common.php 中$_LANG['shop_register_closed'] = '该网店暂停注册';修改该文字就可以了
+16:收货人详细信息js弹出框的提示脚本在哪个文件
+回答：languages\zh_cn\shopping_flow.php [比如 $_LANG['flow_js']['country_not_null'] = '请您选择收货人所在国家！';]
+17:网站公告代码段在那里
+回答: index.php文件中, $smarty->assign('shop_notice',     $_CFG['shop_notice']);       // 商店公告代码段控制公告
+18:网站首页＂精品推荐＂显示数量在那里设置
+设置ec首页精品的数量.
+模板管理 -> 设置模板 -> 精品推荐 (修改其显示数量)修改下面的10为你需要的数量,这就是精品推荐
+19:网站首页＂新品上市＂显示数量在那里设置
+设置ec首页新品的数量.
+模板管理 -> 设置模板 -> 新品上架 (修改其显示数量)修改下面的10为你需要的数量,这就是新品上架
+20:如何修改产品的库存
+回答:商品管理 -> 商品列表 -> 选中(库存),编辑就可以了.
+21:如何修改ec表的前缀
+回答:修改data/config.php下的$prefix    = "ecs_";将ecs_修改成你需要的前缀.其次,在数据库中，修改表名比如ecs_goods修改为"xxx_goods";
+22:如何去除首页flash下面的空白区域
+如何显示商品的品牌，如何显示促销产品，为什么首页flash下面有一片空白的地方，如何去掉？
+首先.ec首页flash下面有两个空白的地方，第一个是用来显示促销产品的，右边是用来显示品牌的。
+1:显示促销产品
+后台　->　商品管理 -> 商品列表 -> 编辑产品 -> 通用信息 -> 勾上促销价　->　填写促销期限　->　保存->　更新缓存
+前台flash下空白处就被填充了．
+2:如何显示商品品牌列表
+商品管理 -> 商品品牌 -> 增加品牌X -> 保存
+增加该品牌X下的产品
+商品管理 -> 增加新产品 -> 选择商品品牌 -> 保存 -> 更新缓存
+查看首页，你发现．首页flash下的两片空白处都被填充了。
+23:如何修改ec导航栏目名称
+回答:后台 -> 系统设置 -> 自定义导航栏 -> 编辑 -> 修改导航栏名称
+24:如何将最新产品栏目显示在导航栏里面？
+回答：后台 -> 系统设置 -> 自定义导航栏 -> 增加自定义导航,在链接的栏目中输入"search.php?intro=new"
+25:如何更换ec模板
+回答：比如新模板“test”,你将放在themes目录下，形成的路径为themes/test,然后在后台 -> 模板管理 -> 模板选择 ，起用你新加的模板就OK了。
+26:ec产品相关的图片有那几种
+回答：$goods_img        = ''; // 初始化商品图片
+    $goods_thumb      = ''; // 初始化商品缩略图
+    $original_img     = ''; // 初始化原始图片
+    $old_original_img = ''; // 初始化原始图片旧图
+27：ec首页如何设置“新品”，“精品”，“热卖”商品
+如何设置ec显示精品推荐新品上市热卖商品.
+后台-> 商品管理 -> 商品列表
+1:设置ec首页精品
+在该商品列表页,在精品下面点
+2: 设置ec首页新品
+在该商品列表页,在新品下面点
+3: 设置ec热销产    
+在该商品列表页,在"热销"下面点
+28:如何修改“支付方式”显示顺序
+回答：打开ecs_payment表,如果你想让他显示在前面，你将设置pay_order值小一些，比如想让“支付宝”排第一，“快钱”排第二，你就可以设置支付宝pay_order=1,快钱pay_order=2
+29:详细页面的积分
+回答：详细页面的积分在模板<strong>{$lang.goods_give_integral}</strong><font class="f4">{$goods.give_integral} {$points_name}</font>中来控制的
+30:如何修改产品缩略图大小
+回答：后台 -> 系统设置 -> 网店设置 -> 显示设置 -> 缩略图宽度.,当然你也可以设置缩略图高度
+31:如何设置ec货币格式和日期格式。
+回答：后台 -> 系统设置 -> 网店设置 -> 显示设置 -> 货币格式(￥%s元)或者时间格式(Y-m-d H:i:s)
+32:如何开取和关闭ec登陆验证码
+回答:后台 -> 系统设置 -> 验证码管理 ,在这里你可以操作各种验证码,开启和关闭
+33:如何修改个人帐户信息里面，出生年月的范围
+{html_select_date field_order=YMD prefix=birthday start_year=-60 end_year=+1 display_days=true month_format=%m day_value_format=%02d time=$profile.birthday}
+start_year=-60意思是从今天开始，推前面60年。 end_year+=1就是今年开始，往后推一年。就是表示这个范围。如果你需要更大的范围，将他们修改的更大一些。比如start_year=-100,end_year+=100。这样范围够大了把。呵呵
+34:ec中的模板中如何包含模板
+回答:查看includes/cls_template.php中，发现php中的include方式在smarty中依然有用. {include file='library/dd.lbi'}所以,你用include方式,就可以在ecshop中的lbi中包含lbi
+35:如何调整ec flash播放器播放速度
+回答：// 0xffffff:文字颜色|1:文字位置|0x0066ff:文字背景颜色|60:文字背景透明度|0xffffff:按键文字颜色|0x0066ff:按键默认颜色|0x000033:按键当前颜色|8:自动播放时间(秒)|2:图片过渡效果|1:是否显示按钮|_blank:打开窗口
+var swf_config = "|2|||0xFFFFFF|0xFF6600||2|3|1|_blank"
+以上表明，后面的2是控制速度的，如果你感觉他快了。你就把2修改成比2大的数。这样ecshop flash播放器速度就会慢些
+36:ec2.7.0首页轮换图片如何管理
+回答：后台 -> 系统设置 -> 首页主广告管理 -> 系统默认，自定义。。。在这里。你可以进行首页flash图片管理 
+37.ec订单中，哪个字段是控制折扣的
+回答：order_info表格中，discount字段控制折扣。
+38:如何显示销售排行:
+回答:显示销售排行，首先你需要有交易的定单,而且该定单已经交易完成,并且该定单中的产品库存不为零.如果库存为零,还是不能显示.
+39:Notice: Undefined variable: _LANG in D:\cms\new\includes\init.php on line 179错误如何解决
+回答：认真检查语言包require(ROOT_PATH . 'languages/' . $_CFG['lang'] . '/common.php');文件是否存在，或者遗漏
+40:ec flash播放器文件和图片在哪个文件夹里面
+回答：flash播放器程序在data\flashdata，图片在data\afficheimg里面
+50:如果不小心把ec 的install.lock文件删除了怎么办
+回答：很简单．在data 目录下，建立一个名字为install.lock的文件就好了。甚至内容都不需要．
+51:如何设置快递单的打印模板
+回答：系统设置 -> 配送方式 -> 编辑打印模板
+52:ec如何删除“注册用户”，“VIP用户”价格
+回答：会员管理 -> 会员等级 -> 删除或者不显示对应会员等级的价格
+53：如何调整分类列表也分页显示产品的个数。
+回答：后台 -> 系统设置 -> 商店设置 -> 显示设置 -> 商品分类页列表的数量
+54:用户中心，产品推荐，分成细节文字在那里修改：
+回答：languages\zh_cn\user.php 文件中的 $_LANG['affiliate_intro'][0] 内容，进行修改　　
+55:购物车中的文字信息如何修改“您的购物车中有 0 件商品，总计金额 ￥0.00元”
+回答：languages\zh_cn\common.php 文件中，修改$_LANG['cart_info'] = '您的购物车中有 %d 件商品，总计金额 %s。';文字修改成你需要的文字
+56:如何控制ecshop文件的编码。
+回答：header("Content-type: text/html; charset=UTF-8"); 
+57:如何修改调整ec用户中心左侧栏目
+回答：模板文件library/user_menu.lbi中。修改和去除一些栏目，就可以了
+58:如何设置网站首页最新新闻的数量
+回答：后台 -> 系统设置　->　网店设置　-> 显示设置 -> 最新文章显示数量
+59:ec smarty模板中and 语法如何使用
+回答：{if $smarty.foreach.table_name.iteration > 1 and ($smarty.foreach.table_name.iteration-1) % 4 eq 0}
+60:ec积分商城的产品放在哪个表里面？
+回答：ecs_exchange_goods里面存储了积分商城的产品信息
+61:ec后台如何设置产品价格格式
+回答:后台->系统设置->网店设置->显示设置->商品价格显示规则
+62:如何删除ec底部查询
+回答：模板文件中library/page_footer.lbi中，删除{insert name='query_info'}
+63：如何给网站底部增加第三方统计代码
+回答：后台->系统设置->基本设置->统计代码。点保存
+64:页面标题和中间导航,程序在那里?
+回答:includes/lib_main.php中的assign_ur_here()函数中
+65:如何手动调节一个ecshop会员的等级
+回答:后台->会员管理->会员列表->选中某个会员 -> 查看帐目明细 -> 调节会员帐户 -> 等级积分帐户(增加或者减少)相对应的分,调节到需要调节的会员等级的积分。就能达到手动调节会员等级的效果
+66:如何改变ec首页flash显示的大小
+回答：模板文件中，index.dwt.
+<script type="text/javascript">
+var swf_width=534;
+var swf_height=218;
+</script>
+修改他的值就可以了
+67:如何修改网站关闭后的提示信息？
+回答：languages\zh_cn\common.php 中，把这句中文，修改成你要的文字$_LANG['shop_closed'] = '本店盘点中，请您稍后再来...';
+68:js如何取select的值
+回答：var t = document.getElementById("typeController"); 
+alert(t.options[t.selectedIndex].value);
+69:让ecshop属性下拉格式显示
+回答：后台－系统设置－商店设置－商品显示设置    第六行 商品属性显示样式: 单选按钮 下拉列表
+70:如何控制评论的审核状态
+回答：后台->系统设置->商店设置->基本设置->用户评论是否需要审核
+71:ec中奇兵夺宝的时间和信息在哪个表
+回答：ecs_snatch_log里面装着出价的时间和价格。还有用户ID,出价时间是bid_time
+71:ec模板如何控制字符长度
+回答：{$article.short_title|truncate:10:"...":true}这样就可以截取字符串长度了
+好忙啊。。。。。待叙。。。。争取早日完成100条。。。
+72:如何编辑“ecshop用户协议”
+回答：后台->文章管理->文章列表->编辑“用户协议”那篇文章。
+73:如何修改后台操作栏目条
+回答：languages\zh_cn\admin\common.php中修改
+74:如何在ecshop自定义导航栏增加ecshop积分商城
+回答：exchange.php增加进去，就可以了。 
+75:ec数据库备份的文件放在哪个目录
+回答：data\sqldata目录下面
+76:如何加强ecshop搜索
+回答:
+   word_list = explode(' ', $keyword);
+   foreach ($word_list as $word)
+       {
+         $conditions .= " AND (g.goods_name LIKE '%" . trim($word) . "%')";
+    }
+根据ecmall论坛上朋友的思路，可以更加方便搜索.
+77:如何增加在ec中增加和"中国"同一级别的地区地址。
+回答：insert into ecs_region values('','0','美国','0','0');在根据该region_id.插入不同级别地区。
+78:如何修改ur_here.lbi中的信息
+回答：includes/lib_main.php函数中，修改assign_ur_here()函数
+79:如何修复mysql的myd文件。
+回答：执行REPAIR TABLE 命令
+80:如何控制EC商品浏览历史数量
+回答：系统设置->商店设置->显示设置->浏览历史数量设置
+81:Can't Connect MySQL Server(localhost:3306)! 如何修改
+回答：当你换了空间，或者是换了密码之后，你需要修改data/config.php文件。修改成目前现在的密码
+82:V2.7.1 beta1 admin目录怎么修改
+回答：data/config.php里面修改$admin_dir = "xx";
+83:ec2.7.1里面，如何将其他栏目增加到导航栏
+回答：系统设置->自定义导航栏->(填写栏目名称，地址，以及位置)
+84:如何将分类商品推荐到首页
+回答：后台->商品管理->商品分类->编辑.->设置为首页推荐:在里面勾选就可以了。
+85:EC中admin/sitemap.php 这个文件是用来做什么的？ 它生成的sitemap.xml 文件有什么用？？
+回答：他是生成ecshop网站地图,生成的地图文件，可以用来帮助商城的SEO方面的用途
+86:新下载的ec模板如何使用
+回答:解压后，把他直接拷贝到themes目录里面。然后在后台模板设置里面，起用该模板就可以了。
+87:ec后台商品详细页面编辑器在那里定义和实例化的
+回答：admin/includes/lib_main.php中的create_html_editor($input_name, $input_value = '')函数。。进行编辑器定义。
+88:如何获取某个商品某个属性的值
+回答：利用以下函数
+function get_zhiding_attr_value($aid,$gid){
+   global $ecs;
+   global $db;
+   return $db -> getOne("select attr_value from ".$ecs->table('goods_attr')." where goods_id = $gid and attr_id = $aid");
+}
+89:文章分类每页显示的数量
+回答:后台->显示设置->文章分类页列表的数量.这里设置每个页面显示的数量.
+90:ec商品扩展分类存储在哪个表里面
+回答：存储在ecs_goods_cat表里面
+ 
