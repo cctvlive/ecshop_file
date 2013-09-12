@@ -1,0 +1,53 @@
+ECshop_V2.7.3删除全部版权方法  此博文包含视频	 (2012-08-11 10:56:57)
+
+
+本文仅作为个人研究用，请尊重版权，如用于商业用途，请购买正版。
+去掉ecshop前台版权 方法如下：
+一、ECSHOP前台显示的页面的版权在下面几个地方修改：
+1.meta标签中的Generator：
+includes目录内cls_template.php，里面有一段
+
+             $source = preg_replace(’/<head>/i’, “<head>\r\n<meta name=\”Generator\” content=\”" . APPNAME .’ ‘ . VERSION . “\” />”,   $source);
+2修改底部”Powered by Ecshop 2.x.x”
+使用文本编辑器打开文件: ecshop根目录/themes/当前模板名/library/page_footer.lbi, 找到如下代码:
+       {insert name=’query_info’}
+
+       <a href=”http://www.ecshop.com” target=”_blank” style=”font-size:10px”>Powered by <strong><span style=”color: #3366FF”>ECShop</span> <span style=”color: #FF9966″>{$ecs_version}</span></strong></a>
+
+ecshop根目录/templates/caches/index_40f7560.php
+去掉Powered by Ecshop
+将蓝色部分删除或修改加粗部分为自己网站信息.
+3.标题中的“Powered by”
+includes目录内lib_main.php，里面有一段
+$page_title = $GLOBALS['_CFG']['shop_title'] . ‘ - ‘ . ‘Powered by ECShop’;
+4.在languages/zh_cn/common.php文件修改，找到：
+$_LANG['copyright'] = “? 2005-%s %s 版权所有，并保留所有权利。”;
+3.取出底部ecshop的logo
+在 ecshop根目录/themes/当前模板名/library/page_footer.lbi, 找到如下代码: <img src="../images/footer-logo.gif" alt="" id="footer-logo" />.将其删掉即可.
+注意：记住要按照以前的代码格式修改.
+
+ECSHOP修改后台管理地址的方法（ECSHOP 2.7.3）
+　　把后台地址从“admin”改成“control”为例
+　　１.把下列文件指定行的“admin”改成“control”，前面是文件名，后面是行号
+　　date/config.php 23
+　　admin/index.php 812
+　　admin/database.php 20
+　　admin/get_password.php 107
+　　admin/goods.php 19
+　　admin/check_file_priv.php 34
+　　admin/includes/init.php 31 83 84 196 296
+　　include/lib_main.php 1741
+　　include/cls_ecshop.php 130 131
+　　２.最后把根目录下后台目录名“admin”改成“control“就OK了
+去掉后台菜单上的”关于ecshop“
+路径:admin/templates打开top.html. 把194-195行内容删除或注释掉即可.
+<li><a href="index.php?act=about_us" target="main-frame">{$lang.about}111</a></li>
+<li><a href="javascript:web_address();">{$lang.help}</a></li>
+二、后台版权去除
+文件位置：languages/zh_cn/admin/common.php修改相关内容，你懂的！！ECshop_V2.7.3删除全部版权方法
+再找到admin/templates/top.htm
+    <div id=”logo-div”><img src=”images/ecshop_logo.gif” alt=”ECSHOP - power for e-commerce” /></div> //去掉alt属性 太太邪恶了 ！！
+    <li><a href=”index.php?act=about_us” target=”main-frame”>{$lang.about}</a></li>
+文件位置：admin/templates/menu.htm
+<script language=”JavaScript” src=”http://api.ecshop.com/menu_ext.php?charset={$charset}&lang={$help_lang}”></script>
+再次声明：本文仅作为个人研究用，请尊重版权，如用于商业用途，请购买正版。
